@@ -3,6 +3,7 @@ import "dotenv/config";
 import fs from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
+import { randomUUID } from "crypto";
 
 // --- File Path Setup ---
 const __filename = fileURLToPath(import.meta.url);
@@ -11,308 +12,249 @@ const __dirname = dirname(__filename);
 // --- Gemini API Initialization ---
 const API_KEY = process.env.GEMINI_API_KEY;
 if (!API_KEY) {
-  throw new Error("GEMINI_API_KEY is not set in the environment variables.");
+    throw new Error("GEMINI_API_KEY is not set in the environment variables.");
 }
 const ai = new GoogleGenAI({ apiKey: API_KEY });
+
+// --- In-Memory Chat History Storage ---
+const chatHistories = {};
 
 // --- Helper Functions ---
 
 /**
  * A robust retry mechanism with exponential backoff and jitter.
- * This function will now retry on both 429 (Too Many Requests) and 503 (Service Unavailable) errors.
  */
 async function withRetry(apiCallFn, maxRetries = 5, initialDelay = 2000) {
-  for (let attempt = 0; attempt < maxRetries; attempt++) {
-    try {
-      return await apiCallFn();
-    } catch (error) {
-      // Check if the error is a rate limit (429) or a temporary server error (503).
-      if (error.status === 429 || error.status === 503) {
-        if (attempt === maxRetries - 1) {
-          console.error(
-            `API call failed after ${maxRetries} attempts. No more retries.`
-          );
-          throw error;
+    for (let attempt = 0; attempt < maxRetries; attempt++) {
+        try {
+            return await apiCallFn();
+        } catch (error) {
+            if (error.status === 429 || error.status === 503) {
+                if (attempt === maxRetries - 1) {
+                    console.error(`API call failed after ${maxRetries} attempts. No more retries.`);
+                    throw error;
+                }
+                const delay = initialDelay * Math.pow(2, attempt) + Math.random() * 1000;
+                console.warn(`API Error (${error.status}). Retrying in ${Math.round(delay / 1000)}s...`);
+                await new Promise((resolve) => setTimeout(resolve, delay));
+            } else {
+                throw error;
+            }
         }
-        const delay =
-          initialDelay * Math.pow(2, attempt) + Math.random() * 1000;
-        console.warn(
-          `API Error (${error.status}). Retrying in ${Math.round(
-            delay / 1000
-          )}s...`
-        );
-        await new Promise((resolve) => setTimeout(resolve, delay));
-      } else {
-        // For any other error, throw it immediately.
-        throw error;
-      }
     }
-  }
 }
 
 /**
  * Converts a local file to a GoogleGenerativeAI.Part object.
  */
 function fileToGenerativePart(path, mimeType) {
-  return {
-    inlineData: {
-      data: Buffer.from(fs.readFileSync(path)).toString("base64"),
-      mimeType,
-    },
-  };
+    return {
+        inlineData: {
+            data: Buffer.from(fs.readFileSync(path)).toString("base64"),
+            mimeType,
+        },
+    };
 }
 
 // --- Schemas for Different Content Types ---
 
-const DefaultSchema = {
-  type: "OBJECT",
-  properties: {
-    title: {
-      type: "STRING",
-      description: "A comprehensive and descriptive title for the content.",
+const WebSearchResultSchema = {
+    type: "OBJECT",
+    properties: {
+        title: { type: "STRING" },
+        url: { type: "STRING" },
+        snippet: { type: "STRING" },
     },
-    summary: {
-      type: "STRING",
-      description: "A detailed summary of the key points.",
-    },
-    content: {
-      type: "STRING",
-      description:
-        "A long-form, detailed, and comprehensive body of text, formatted with markdown for readability.",
-    },
-  },
-  required: ["title", "summary", "content"],
+    required: ["title", "url", "snippet"],
 };
 
-const LessonPlanSchema = {
-  type: "OBJECT",
-  properties: {
-    title: { type: "STRING" },
-    gradeLevel: { type: "STRING" },
-    duration: { type: "STRING" },
-    learningObjectives: { type: "ARRAY", items: { type: "STRING" } },
-    keyTerms: { type: "ARRAY", items: { type: "STRING" } },
-    hookIntroduction: {
-      type: "STRING",
-      description:
-        "A detailed and engaging opening to capture student interest.",
-    },
-    mainActivity: {
-      type: "STRING",
-      description:
-        "A comprehensive description of the main learning activity, such as a lecture, project, or discussion.",
-    },
-    assessment: {
-      type: "STRING",
-      description: "A detailed description of the assessment method.",
-    },
-  },
-  required: [
-    "title",
-    "gradeLevel",
-    "duration",
-    "learningObjectives",
-    "keyTerms",
-    "hookIntroduction",
-    "mainActivity",
-    "assessment",
-  ],
-};
-
-const AssignmentSchema = {
-  type: "OBJECT",
-  properties: {
-    title: { type: "STRING" },
-    instructions: {
-      type: "STRING",
-      description:
-        "A long-form, step-by-step set of instructions for the assignment.",
-    },
-    submissionCriteria: {
-      type: "STRING",
-      description: "A detailed list of all submission requirements.",
-    },
-    rubric: {
-      type: "STRING",
-      description:
-        "A comprehensive grading rubric, detailing all criteria for success.",
-    },
-  },
-  required: ["title", "instructions", "submissionCriteria", "rubric"],
-};
-
-const QuizSchema = {
-  type: "OBJECT",
-  properties: {
-    title: { type: "STRING" },
-    questions: {
-      type: "ARRAY",
-      items: {
-        type: "OBJECT",
-        properties: {
-          questionNumber: { type: "INTEGER" },
-          question: { type: "STRING" },
-          choices: { type: "ARRAY", items: { type: "STRING" } },
-          correctAnswer: { type: "STRING" },
+const PresentationSchema = {
+    type: "OBJECT",
+    properties: {
+        title: { type: "STRING" },
+        simulatedSources: { type: "ARRAY", items: WebSearchResultSchema },
+        slides: {
+            type: "ARRAY",
+            items: {
+                type: "OBJECT",
+                properties: {
+                    slideNumber: { type: "INTEGER" },
+                    title: { type: "STRING" },
+                    content: { type: "ARRAY", items: { type: "STRING" } },
+                    speakerNotes: { type: "STRING" },
+                },
+                required: ["slideNumber", "title", "content", "speakerNotes"],
+            },
         },
-        required: ["questionNumber", "question", "choices", "correctAnswer"],
-      },
     },
-  },
-  required: ["title", "questions"],
+    required: ["title", "simulatedSources", "slides"],
 };
 
-const LectureSchema = {
-  type: "OBJECT",
-  properties: {
-    title: { type: "STRING" },
-    duration: { type: "STRING" },
-    keyConcepts: { type: "ARRAY", items: { type: "STRING" } },
-    script: {
-      type: "STRING",
-      description:
-        "A detailed, comprehensive, long-form lecture script formatted with markdown, suitable for the specified duration.",
+const DocumentSchema = {
+    type: "OBJECT",
+    properties: {
+        title: { type: "STRING" },
+        simulatedSources: { type: "ARRAY", items: WebSearchResultSchema },
+        summary: { type: "STRING" },
+        sections: {
+            type: "ARRAY",
+            items: {
+                type: "OBJECT",
+                properties: {
+                    subtitle: { type: "STRING" },
+                    content: { type: "STRING" },
+                },
+                required: ["subtitle", "content"],
+            },
+        },
     },
-  },
-  required: ["title", "duration", "keyConcepts", "script"],
+    required: ["title", "simulatedSources", "summary", "sections"],
+};
+
+const GeneralContentSchema = {
+    type: "OBJECT",
+    properties: {
+        title: { type: "STRING" },
+        summary: { type: "STRING" },
+        content: { type: "STRING" },
+    },
+    required: ["title", "summary", "content"],
 };
 
 /**
  * Detects the requested content type from the prompt using a priority system.
- * @param {string} prompt - The user's prompt.
- * @returns {string} The detected content type with the highest priority.
  */
 function detectContentType(prompt) {
-  const lowerCasePrompt = prompt.toLowerCase();
-
-  // Keywords are ordered by priority (lower number is higher priority)
-  const keywordPriority = [
-    { name: "lessonPlan", keywords: ["lesson plan"], priority: 1 },
-    { name: "assignment", keywords: ["assignment"], priority: 2 },
-    { name: "quiz", keywords: ["quiz", "quizzes"], priority: 2 },
-    { name: "lecture", keywords: ["lecture"], priority: 3 },
-  ];
-
-  let bestMatch = { name: "default", priority: 99 };
-
-  for (const type of keywordPriority) {
-    for (const keyword of type.keywords) {
-      if (
-        lowerCasePrompt.includes(keyword) &&
-        type.priority < bestMatch.priority
-      ) {
-        bestMatch = { name: type.name, priority: type.priority };
-      }
+    const lowerCasePrompt = prompt.toLowerCase();
+    const keywordPriority = [
+        { name: "presentation", keywords: ["ppt", "presentation", "powerpoint", "slides"], priority: 1 },
+        { name: "document", keywords: ["pdf", "docx", "document", "report"], priority: 2 },
+    ];
+    let bestMatch = { name: "default", priority: 99 };
+    for (const type of keywordPriority) {
+        for (const keyword of type.keywords) {
+            if (lowerCasePrompt.includes(keyword) && type.priority < bestMatch.priority) {
+                bestMatch = { name: type.name, priority: type.priority };
+            }
+        }
     }
-  }
-
-  return bestMatch.name;
+    return bestMatch.name;
 }
 
 // --- Main Service Functions ---
 
 /**
- * Generates structured content dynamically based on the prompt.
+ * Starts a new chat session and returns a unique session ID.
+ * @returns {string} The unique ID for the new chat session.
  */
-export async function generateStructuredContent(prompt, file) {
-  try {
-    const contentType = detectContentType(prompt);
-    let schema;
-    let systemInstruction;
-
-    // Use gemini-2.5-pro for longer, more detailed content
-    const model = "gemini-2.5-pro";
-
-    switch (contentType) {
-      case "lessonPlan":
-        schema = LessonPlanSchema;
-        systemInstruction =
-          "You are an expert curriculum designer. Generate a comprehensive, long-form, and detailed lesson plan based on the user's prompt, adhering strictly to the provided JSON schema. Ensure all fields contain thorough information.";
-        break;
-      case "assignment":
-        schema = AssignmentSchema;
-        systemInstruction =
-          "You are an educator creating a detailed student assignment. Generate long-form, comprehensive instructions and criteria, adhering strictly to the provided JSON schema.";
-        break;
-      case "quiz":
-        const match = prompt.match(/(\d+)\s*question/i);
-        const questionCount = match ? parseInt(match[1]) : 20;
-        schema = QuizSchema;
-        systemInstruction = `You are a test creator. Generate a comprehensive quiz with exactly ${questionCount} questions based on the user's prompt, adhering strictly to the provided JSON schema.`;
-        break;
-      case "lecture":
-        schema = LectureSchema;
-        systemInstruction =
-          "You are a university professor preparing a lecture. Generate a detailed, comprehensive, and long-form lecture script suitable for the requested time span, adhering strictly to the provided JSON schema.";
-        break;
-      default:
-        schema = DefaultSchema;
-        systemInstruction =
-          "You are a helpful AI assistant. Generate a long-form, comprehensive, and detailed response with a title, summary, and content, adhering strictly to the provided JSON schema.";
-        break;
-    }
-
-    let contents = [{ role: "user", parts: [{ text: prompt }] }];
-
-    if (file) {
-      const tempDir = join(__dirname, "..", "uploads");
-      const tempFilePath = join(tempDir, file.filename);
-      if (!fs.existsSync(tempFilePath)) {
-        throw new Error(`File not found: ${tempFilePath}`);
-      }
-      contents[0].parts.push(fileToGenerativePart(tempFilePath, file.mimetype));
-      fs.unlinkSync(tempFilePath);
-    }
-
-    const result = await withRetry(() =>
-      ai.models.generateContent({
-        model: model,
-        contents: contents,
-        config: {
-          systemInstruction: systemInstruction,
-          responseMimeType: "application/json",
-          responseSchema: schema,
-        },
-      })
-    );
-
-    return JSON.parse(result.text);
-  } catch (error) {
-    console.error("Error in Gemini Content Generation call:", error);
-    throw new Error(
-      "Failed to generate a structured response from the AI model."
-    );
-  }
+export function startChatSession() {
+    const sessionId = randomUUID();
+    chatHistories[sessionId] = []; // Initialize an empty history
+    console.log(`New chat session started: ${sessionId}`);
+    return sessionId;
 }
 
 /**
- * Generates an image using the gemini-2.5-flash-image-preview model.
+ * Sends a message within a chat session and gets a structured response.
+ * @param {string} sessionId - The ID of the current chat session.
+ * @param {string} prompt - The user's text prompt.
+ * @param {object} [file] - An optional file object from multer.
+ * @returns {Promise<object>} A promise that resolves to the parsed JSON object from the AI.
+ */
+export async function sendMessage(sessionId, prompt, file) {
+    if (!chatHistories[sessionId]) {
+        throw new Error("Invalid session ID. Please start a new session.");
+    }
+
+    try {
+        const history = chatHistories[sessionId];
+        const contentType = detectContentType(prompt);
+        let schema;
+        let systemInstruction;
+        const model = "gemini-2.5-pro";
+
+        // --- Determine Schema and System Instruction ---
+        switch (contentType) {
+            case "presentation":
+                schema = PresentationSchema;
+                systemInstruction = "You are a research assistant creating a presentation. First, simulate finding 3-5 relevant web sources. Then, use that synthesized information to generate a comprehensive slide deck, adhering strictly to the provided JSON schema.";
+                break;
+            case "document":
+                schema = DocumentSchema;
+                systemInstruction = "You are a professional writer creating a formal document. First, simulate a web search by generating 3-5 relevant sources. Then, based on that simulated research, write a comprehensive document, adhering strictly to the provided JSON schema.";
+                break;
+            default:
+                schema = GeneralContentSchema;
+                systemInstruction = "You are a helpful AI assistant. Generate a long-form, comprehensive response with a title, summary, and content, adhering strictly to the provided JSON schema.";
+                break;
+        }
+
+        // --- Construct the new user message ---
+        const userMessage = { role: "user", parts: [{ text: prompt }] };
+
+        if (file) {
+            const tempDir = join(__dirname, "..", "uploads");
+            const tempFilePath = join(tempDir, file.filename);
+            if (!fs.existsSync(tempFilePath)) {
+                throw new Error(`File not found: ${tempFilePath}`);
+            }
+            userMessage.parts.push(fileToGenerativePart(tempFilePath, file.mimetype));
+            fs.unlinkSync(tempFilePath);
+        }
+
+        // Add the new user message to the session's history
+        history.push(userMessage);
+
+        // --- Make the API call with the entire history ---
+        const result = await withRetry(() => ai.models.generateContent({
+            model: model,
+            contents: history, // Send the full conversation history
+            config: {
+                systemInstruction: systemInstruction,
+                responseMimeType: "application/json",
+                responseSchema: schema,
+            },
+        }));
+
+        const modelResponseJson = JSON.parse(result.text);
+
+        // Add the model's response to the history for future context
+        history.push({ role: "model", parts: [{ text: result.text }] });
+
+        return modelResponseJson;
+
+    } catch (error) {
+        console.error(`Error in session ${sessionId}:`, error);
+        throw new Error("Failed to get a structured response from the AI model.");
+    }
+}
+
+
+/**
+ * Generates an image using the Gemini model. (Stateless)
  */
 export async function generateImage(prompt) {
-  try {
-    const model = "gemini-2.5-flash-image-preview";
+    try {
+        const model = "gemini-2.5-flash-image-preview";
 
-    const response = await withRetry(() =>
-      ai.models.generateContent({
-        model: model,
-        contents: [{ role: "user", parts: [{ text: prompt }] }],
-        config: {
-          responseModalities: ["IMAGE"],
-        },
-      })
-    );
+        const response = await withRetry(() => ai.models.generateContent({
+            model: model,
+            contents: [{ role: "user", parts: [{ text: prompt }] }],
+            config: {
+                responseModalities: ['IMAGE'],
+            }
+        }));
 
-    const imagePart = response.candidates?.[0]?.content?.parts?.find(
-      (p) => p.inlineData
-    );
+        const imagePart = response.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
 
-    if (imagePart && imagePart.inlineData.data) {
-      return imagePart.inlineData.data;
-    } else {
-      throw new Error("The AI model did not return a valid image.");
+        if (imagePart && imagePart.inlineData.data) {
+            return imagePart.inlineData.data;
+        } else {
+            throw new Error("The AI model did not return a valid image.");
+        }
+    } catch (error) {
+        console.error("Error in Gemini Image API call:", error);
+        throw new Error("Failed to generate image from the AI model.");
     }
-  } catch (error) {
-    console.error("Error in Gemini Image API call:", error);
-    throw new Error("Failed to generate image from the AI model.");
-  }
 }
+

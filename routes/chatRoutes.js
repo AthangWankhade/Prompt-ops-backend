@@ -1,22 +1,20 @@
 import express from "express";
-// Correctly import the renamed controller function
 import {
-  handleContentGeneration,
   handleImageGeneration,
+  handleSendMessage,
+  handleStartSession,
 } from "../controllers/chatController.js";
-// Correct the import to use the default export from the middleware
 import upload from "../middleware/uploadMiddleware.js";
 
 const router = express.Router();
 
-// This route now correctly uses the 'handleContentGeneration' function
-router.post(
-  "/generate-content",
-  upload.single("file"),
-  handleContentGeneration
-);
+// Route to start a new chat session and get a session ID
+router.post("/start-session", handleStartSession);
 
-// Route for generating images remains the same
+// Route to send a message within a session. The session ID must be provided.
+router.post("/send-message", upload.single("file"), handleSendMessage);
+
+// Route for generating images (remains stateless)
 router.post("/generate-image", handleImageGeneration);
 
 export default router;
