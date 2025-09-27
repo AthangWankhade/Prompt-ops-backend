@@ -1,0 +1,180 @@
+{
+  "title": "Newton's Laws of Motion Quiz",
+  "questions": [
+    {
+      "questionNumber": 1,
+      "question": "What is Newton's First Law of Motion often called?",
+      "choices": [
+        "The Law of Acceleration",
+        "The Law of Action-Reaction",
+        "The Law of Inertia",
+        "The Law of Gravity"
+      ],
+      "correctAnswer": "The Law of Inertia"
+    },
+    {
+      "questionNumber": 2,
+      "question": "According to Newton's Second Law, what is the relationship between force, mass, and acceleration?",
+      "choices": ["F = m/a", "F = ma", "a = F/m", "Both F = ma and a = F/m"],
+      "correctAnswer": "Both F = ma and a = F/m"
+    },
+    {
+      "questionNumber": 3,
+      "question": "Newton's Third Law of Motion states that for every action, there is an equal and ______ reaction.",
+      "choices": ["opposite", "equivalent", "immediate", "unrelated"],
+      "correctAnswer": "opposite"
+    },
+    {
+      "questionNumber": 4,
+      "question": "An object at rest stays at rest and an object in motion stays in motion with the same speed and in the same direction unless acted upon by a(n) ______ force.",
+      "choices": ["balanced", "unbalanced", "gravitational", "frictional"],
+      "correctAnswer": "unbalanced"
+    },
+    {
+      "questionNumber": 5,
+      "question": "What is the standard unit of force?",
+      "choices": ["Joule", "Watt", "Kilogram", "Newton"],
+      "correctAnswer": "Newton"
+    },
+    {
+      "questionNumber": 6,
+      "question": "If you push on a wall with a force of 10 N, what is the force the wall exerts on you?",
+      "choices": ["0 N", "5 N", "10 N", "20 N"],
+      "correctAnswer": "10 N"
+    },
+    {
+      "questionNumber": 7,
+      "question": "Which of the following properties of an object is a measure of its inertia?",
+      "choices": ["Velocity", "Weight", "Mass", "Volume"],
+      "correctAnswer": "Mass"
+    },
+    {
+      "questionNumber": 8,
+      "question": "If the net force acting on an object is zero, its acceleration will be:",
+      "choices": ["Zero", "Constant and non-zero", "Increasing", "Decreasing"],
+      "correctAnswer": "Zero"
+    },
+    {
+      "questionNumber": 9,
+      "question": "A force of 20 N is applied to an object with a mass of 5 kg. What is the acceleration of the object?",
+      "choices": ["100 m/s²", "4 m/s²", "0.25 m/s²", "15 m/s²"],
+      "correctAnswer": "4 m/s²"
+    },
+    {
+      "questionNumber": 10,
+      "question": "Which law explains why you feel pushed back into your seat when a car accelerates forward?",
+      "choices": [
+        "First Law",
+        "Second Law",
+        "Third Law",
+        "Law of Universal Gravitation"
+      ],
+      "correctAnswer": "First Law"
+    },
+    {
+      "questionNumber": 11,
+      "question": "According to the second law, if you double the force applied to an object, its acceleration will...",
+      "choices": [
+        "be halved.",
+        "double.",
+        "remain the same.",
+        "be quadrupled."
+      ],
+      "correctAnswer": "double."
+    },
+    {
+      "questionNumber": 12,
+      "question": "A rocket propels itself forward by expelling gas backward. This is a classic example of which law?",
+      "choices": [
+        "Newton's First Law",
+        "Newton's Second Law",
+        "Newton's Third Law",
+        "Kepler's Law"
+      ],
+      "correctAnswer": "Newton's Third Law"
+    },
+    {
+      "questionNumber": 13,
+      "question": "If you are in a car that suddenly stops, your body continues to move forward. This is due to:",
+      "choices": ["Acceleration", "Inertia", "Gravity", "Friction"],
+      "correctAnswer": "Inertia"
+    },
+    {
+      "questionNumber": 14,
+      "question": "It is more difficult to start moving a heavy box than a light one. Which law best explains this?",
+      "choices": [
+        "First Law (Inertia)",
+        "Second Law (F=ma)",
+        "Third Law (Action-Reaction)",
+        "Both the First and Second Laws"
+      ],
+      "correctAnswer": "Both the First and Second Laws"
+    },
+    {
+      "questionNumber": 15,
+      "question": "What is net force?",
+      "choices": [
+        "The force of gravity on an object.",
+        "The sum of all forces acting on an object.",
+        "The strongest force acting on an object.",
+        "The force required to stop an object."
+      ],
+      "correctAnswer": "The sum of all forces acting on an object."
+    },
+    {
+      "questionNumber": 16,
+      "question": "An object moving at a constant velocity has a net force of:",
+      "choices": [
+        "Its mass times its velocity",
+        "A positive value",
+        "A negative value",
+        "Zero"
+      ],
+      "correctAnswer": "Zero"
+    },
+    {
+      "questionNumber": 17,
+      "question": "According to the second law, if you keep the force constant and double the mass of an object, its acceleration will...",
+      "choices": [
+        "be halved.",
+        "double.",
+        "remain the same.",
+        "be quadrupled."
+      ],
+      "correctAnswer": "be halved."
+    },
+    {
+      "questionNumber": 18,
+      "question": "A book resting on a table is in equilibrium. The action force is the Earth pulling on the book (gravity). What is the reaction force according to Newton's Third Law?",
+      "choices": [
+        "The table pushing up on the book.",
+        "The book pushing down on the table.",
+        "The book pulling up on the Earth.",
+        "The air pressure on the book."
+      ],
+      "correctAnswer": "The book pulling up on the Earth."
+    },
+    {
+      "questionNumber": 19,
+      "question": "Who formulated the three laws of motion?",
+      "choices": [
+        "Galileo Galilei",
+        "Albert Einstein",
+        "Isaac Newton",
+        "Aristotle"
+      ],
+      "correctAnswer": "Isaac Newton"
+    },
+    {
+      "questionNumber": 20,
+      "question": "If action and reaction forces are equal and opposite, why don't they cancel each other out?",
+      "choices": [
+        "They act on different objects.",
+        "One is always slightly stronger.",
+        "They act at different times.",
+        "They actually do cancel each other out."
+      ],
+      "correctAnswer": "They act on different objects."
+    }
+  ]
+}
