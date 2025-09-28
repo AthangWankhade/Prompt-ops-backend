@@ -1,125 +1,109 @@
 {
-    "title": "The Roman Empire: From Republic to Ruin",
-    "simulatedSources": [
-        {
-            "title": "The Roman Empire: An Overview of its Rise and Fall",
-            "url": "https://www.historyworld.net/wrldhis/PlainTextHistories.asp?historyid=ab79",
-            "snippet": "The Roman Empire, at its zenith, was one of the largest and most powerful empires in world history. Beginning with the founding of the city of Rome in 753 BCE, it transitioned from a monarchy to a Republic in 509 BCE, and finally into an autocracy under the first emperor, Augustus, in 27 BCE. The period known as the Pax Romana saw two centuries of relative peace and prosperity."
-        },
-        {
-            "title": "Masters of Stone and Water: Roman Engineering",
-            "url": "https://www.nationalgeographic.com/history/article/roman-engineering-marvels",
-            "snippet": "Roman engineers built structures that have stood the test of time. Their mastery of the arch, vault, and dome, combined with the innovative use of concrete, allowed them to create massive structures like the Colosseum and Pantheon. The expansive network of roads and aqueducts was crucial for maintaining military control and supporting urban life across the vast empire."
-        },
-        {
-            "title": "Daily Life and Social Structure in Ancient Rome",
-            "url": "https://www.worldhistory.org/article/639/daily-life-in-ancient-rome/",
-            "snippet": "Roman society was strictly hierarchical, from the elite patricians to the common plebeians, and the large population of enslaved peoples who formed the backbone of the economy. The family, under the authority of the paterfamilias, was the core unit of society. Public life revolved around the Forum, public baths, and spectacular entertainments like gladiatorial games and chariot races."
-        },
-        {
-            "title": "The Fall of Rome: Theories and Consequences",
-            "url": "https://www.khanacademy.org/humanities/world-history/ancient-medieval/roman-empire/a/the-fall-of-rome",
-            "snippet": "The fall of the Western Roman Empire in 476 CE was not a singular event but a prolonged process. Historians debate the primary causes, which include economic instability, over-taxation, political corruption, military overextension, and constant pressure from migrating Germanic tribes. The collapse led to a period of decentralization in Western Europe, but Roman law, language, and culture continued to exert a profound influence."
-        }
-    ],
-    "slides": [
-        {
-            "slideNumber": 1,
-            "title": "The Roman Empire: From Republic to Ruin",
-            "content": [
-                "An exploration of its rise, innovations, society, and eventual fall."
-            ],
-            "speakerNotes": "Welcome. Today, we'll journey back in time to explore one of history's most influential civilizations: the Roman Empire. We'll cover its origins, its greatest achievements, what life was like for its people, and the complex reasons for its ultimate collapse."
-        },
-        {
-            "slideNumber": 2,
-            "title": "From Myth to Republic",
-            "content": [
-                "Legend of Romulus and Remus (founded c. 753 BCE).",
-                "Overthrow of monarchy established the Roman Republic (509 BCE).",
-                "Government structure: Senate, Consuls, and citizen assemblies.",
-                "Early expansion throughout the Italian peninsula."
-            ],
-            "speakerNotes": "Rome's story begins with the myth of Romulus and Remus. The historical reality begins with the Roman Republic, established in 509 BCE. This new form of government, with its Senate and elected consuls, laid the groundwork for Rome's expansion and powerful legal traditions."
-        },
-        {
-            "slideNumber": 3,
-            "title": "The Rise of an Empire",
-            "content": [
-                "Punic Wars against Carthage (264-146 BCE) secured Mediterranean dominance.",
-                "Julius Caesar's conquests in Gaul expanded Roman territory.",
-                "Transition from Republic to Empire marked by civil war and political turmoil.",
-                "In 27 BCE, Octavian becomes Emperor Augustus, initiating the Pax Romana."
-            ],
-            "speakerNotes": "Centuries of conflict, most notably the Punic Wars, transformed Rome into a superpower. The success, however, strained the Republic's political system, leading to civil wars and the rise of powerful generals like Julius Caesar. His adopted son, Augustus, would ultimately end the chaos and become the first Roman Emperor."
-        },
-        {
-            "slideNumber": 4,
-            "title": "Pax Romana: The Golden Age",
-            "content": [
-                "The 'Roman Peace' lasted from 27 BCE to 180 CE.",
-                "An era of unprecedented stability, prosperity, and territorial extent.",
-                "Flourishing of trade, culture, and architecture across the empire.",
-                "Development of Roman Law, which influences legal systems to this day."
-            ],
-            "speakerNotes": "The first two centuries of the Empire are known as the Pax Romana. This was Rome's golden age. Trade flourished across a secure network of roads and sea lanes, cities grew, and monumental architecture was constructed throughout the provinces."
-        },
-        {
-            "slideNumber": 5,
-            "title": "Engineering an Empire",
-            "content": [
-                "Aqueducts: Transported fresh water to cities over great distances.",
-                "Roads: Over 50,000 miles of paved roads facilitated trade and military movement.",
-                "Architecture: Pioneered the use of concrete in structures like the Colosseum and Pantheon.",
-                "Innovations in urban planning and public sanitation."
-            ],
-            "speakerNotes": "The Romans were master builders. Their engineering prowess is still visible today. Aqueducts, roads, and groundbreaking concrete architecture were not just for show; they were practical solutions that improved daily life and helped administer a vast territory."
-        },
-        {
-            "slideNumber": 6,
-            "title": "Society and Daily Life",
-            "content": [
-                "Hierarchical Structure: Patricians (aristocracy), Plebeians (commoners), and enslaved people.",
-                "The family (familia) was the central unit, headed by the paterfamilias.",
-                "Public Life: The Forum, public baths, and 'Bread and Circuses'.",
-                "Entertainment: Gladiator games at the Colosseum and chariot races at the Circus Maximus."
-            ],
-            "speakerNotes": "Roman society was highly stratified. At the top were the Patricians, followed by the Plebeians, with a huge population of enslaved people performing most of the labor. Public life was vibrant, and mass entertainment was used to keep the populace content."
-        },
-        {
-            "slideNumber": 7,
-            "title": "Crisis and Decline",
-            "content": [
-                "The Crisis of the Third Century brought civil war and economic collapse.",
-                "Emperor Diocletian split the empire into East and West for easier administration (c. 285 CE).",
-                "Emperor Constantine legalized Christianity and moved the capital to Constantinople."
-            ],
-            "speakerNotes": "The golden age did not last. The third century was a period of intense crisis. Emperors like Diocletian attempted drastic reforms, most notably dividing the empire into an Eastern and Western half. Constantine's later decision to embrace Christianity and move the capital would have profound long-term consequences."
-        },
-        {
-            "slideNumber": 8,
-            "title": "The Fall of the Western Empire",
-            "content": [
-                "A slow decline caused by multiple factors, not a single event.",
-                "Economic problems: Over-taxation, inflation, reliance on slave labor.",
-                "Military challenges: Overstretched borders and use of non-Roman mercenaries.",
-                "Political corruption and instability.",
-                "External pressure from migrating tribes ('Barbarian Invasions').",
-                "Traditional date of collapse: 476 CE."
-            ],
-            "speakerNotes": "There is no single cause for the fall of the Western Roman Empire. It was a perfect storm of internal and external pressures. The economy was failing, the military was stretched too thin, the political system was corrupt, and constant pressure on its borders proved too much to handle."
-        },
-        {
-            "slideNumber": 9,
-            "title": "The Enduring Legacy",
-            "content": [
-                "Language: Latin is the root of Romance languages (Spanish, French, Italian).",
-                "Law and Governance: Concepts of republican government, legal codes, and citizenship.",
-                "Engineering: Techniques and styles that influenced Western architecture for centuries.",
-                "Religion: The spread of Christianity.",
-                "The Eastern Roman (Byzantine) Empire continued for another thousand years."
-            ],
-            "speakerNotes": "Though the Western Empire fell, Rome's influence is still all around us. Our languages, legal systems, and political ideas have Roman roots. It's also vital to remember that the Eastern half, the Byzantine Empire, thrived for another millennium. Thank you."
-        }
-    ]
+  "title": "The Roman Empire: From Republic to Fall",
+  "simulatedSources": [
+    {
+      "title": "Roman Empire - National Geographic",
+      "url": "https://www.nationalgeographic.org/encyclopedia/roman-empire/",
+      "snippet": "An overview of the Roman Empire's history, from its legendary founding to its eventual decline. Covers key aspects such as government, culture, engineering feats, and influential emperors."
+    },
+    {
+      "title": "The Fall of Rome - HISTORY",
+      "url": "https://www.history.com/news/8-reasons-why-rome-fell",
+      "snippet": "Explores the multiple interconnected factors that contributed to the collapse of the Western Roman Empire, including invasions by Barbarian tribes, economic troubles, overexpansion, and political instability."
+    },
+    {
+      "title": "Pax Romana - Britannica",
+      "url": "https://www.britannica.com/event/Pax-Romana",
+      "snippet": "A detailed article on the Pax Romana, the long period of relative peacefulness and minimal expansion experienced by the Roman Empire from 27 BCE to 180 CE, which was a golden age of prosperity and stability."
+    },
+    {
+      "title": "Roman Engineering - World History Encyclopedia",
+      "url": "https://www.worldhistory.org/Roman_Engineering/",
+      "snippet": "Details the impressive engineering achievements of the Romans, including aqueducts, an extensive network of roads, monumental arches, and the invention of concrete, which enabled the construction of structures like the Colosseum."
+    }
+  ],
+  "slides": [
+    {
+      "slideNumber": 1,
+      "title": "The Roman Empire: A Journey Through History",
+      "content": [
+        "From a small city-state to a vast empire that shaped the Western world."
+      ],
+      "speakerNotes": "Welcome everyone. Today, we'll embark on a journey through one of history's most influential civilizations: the Roman Empire. We'll explore its origins, its golden age, its incredible innovations, and the complex reasons for its eventual decline.",
+      "slideCode": "<div style='font-family: Arial, sans-serif; text-align: center; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f4f4f4;'><h1 style='color: #8b0000;'>The Roman Empire: A Journey Through History</h1><p style='font-size: 1.2em; color: #333;'>From a small city-state to a vast empire that shaped the Western world.</p><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Roman_Empire_Trajan_117AD.png/800px-Roman_Empire_Trajan_117AD.png' alt='Map of the Roman Empire at its height' style='max-width: 80%; height: auto; margin-top: 20px;'/></div>"
+    },
+    {
+      "slideNumber": 2,
+      "title": "From Republic to Empire",
+      "content": [
+        "The Roman Republic (509 BCE - 27 BCE): Governed by the Senate and elected officials (Consuls).",
+        "Internal conflicts and civil wars weakened the Republic.",
+        "Rise of Julius Caesar: A brilliant general and politician whose assassination in 44 BCE plunged Rome into further chaos.",
+        "Augustus (Octavian): Caesar's heir, defeated rivals Mark Antony and Cleopatra, and became the first Roman Emperor in 27 BCE, marking the start of the Empire."
+      ],
+      "speakerNotes": "The transition from Republic to Empire wasn't overnight. It was a long, often bloody process. The Republic's system, designed for a city-state, struggled to manage a vast territory. Figures like Julius Caesar exploited these weaknesses, and his death ultimately paved the way for his adopted son, Octavian, to consolidate power and establish a new political order under the title 'Augustus'.",
+      "slideCode": "<div style='font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;'><h1 style='color: #8b0000;'>From Republic to Empire</h1><ul style='text-align: left; font-size: 1.1em;'><li>The Roman Republic (509 BCE - 27 BCE): Governed by the Senate and elected officials (Consuls).</li><li>Internal conflicts and civil wars weakened the Republic.</li><li>Rise of Julius Caesar: A brilliant general and politician whose assassination in 44 BCE plunged Rome into further chaos.</li><li>Augustus (Octavian): Caesar's heir, became the first Roman Emperor in 27 BCE.</li></ul></div>"
+    },
+    {
+      "slideNumber": 3,
+      "title": "The Pax Romana: Two Centuries of Peace",
+      "content": [
+        "Latin for 'Roman Peace' (27 BCE – 180 CE).",
+        "An era of unprecedented stability, prosperity, and territorial expansion.",
+        "The Empire reached its greatest extent under Emperor Trajan in 117 CE.",
+        "Facilitated trade, the spread of ideas, and massive construction projects."
+      ],
+      "speakerNotes": "The reign of Augustus ushered in the Pax Romana, a golden age lasting nearly 200 years. This wasn't a time of complete peace—there were still wars on the frontiers—but for the average citizen within the empire, it was a period of remarkable stability. This security allowed Roman culture and infrastructure to flourish.",
+      "slideCode": "<div style='font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;'><h1 style='color: #8b0000;'>The Pax Romana: Two Centuries of Peace</h1><ul style='text-align: left; font-size: 1.1em;'><li>Latin for 'Roman Peace' (27 BCE – 180 CE).</li><li>An era of unprecedented stability, prosperity, and territorial expansion.</li><li>The Empire reached its greatest extent under Emperor Trajan in 117 CE.</li><li>Facilitated trade, the spread of ideas, and massive construction projects.</li></ul></div>"
+    },
+    {
+      "slideNumber": 4,
+      "title": "Engineering and Architectural Marvels",
+      "content": [
+        "Aqueducts: Supplied cities with fresh water over vast distances.",
+        "Roads: Over 50,000 miles of paved roads connected the empire ('All roads lead to Rome').",
+        "Concrete (Opus caementicium): Allowed for the construction of massive, durable structures.",
+        "Iconic Buildings: The Colosseum, the Pantheon, and numerous forums and basilicas."
+      ],
+      "speakerNotes": "The Romans were master engineers. Their practical innovations were key to managing their vast empire. Aqueducts transformed urban life, their road network enabled rapid troop movement and trade, and their use of concrete revolutionized architecture, allowing for structures like the Pantheon's dome, which remains the world's largest unreinforced concrete dome to this day.",
+      "slideCode": "<div style='font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;'><h1 style='color: #8b0000;'>Engineering and Architectural Marvels</h1><ul style='text-align: left; font-size: 1.1em;'><li><strong>Aqueducts:</strong> Supplied cities with fresh water over vast distances.</li><li><strong>Roads:</strong> Over 50,000 miles of paved roads connected the empire.</li><li><strong>Concrete:</strong> Allowed for massive, durable structures.</li><li><strong>Iconic Buildings:</strong> The Colosseum, the Pantheon, and forums.</li></ul></div>"
+    },
+    {
+      "slideNumber": 5,
+      "title": "Crisis and Division",
+      "content": [
+        "Crisis of the Third Century (235-284 CE): A period of intense political instability, civil war, and economic collapse.",
+        "Emperor Diocletian (284 CE): Stabilized the empire but recognized it was too large to be governed by one person.",
+        "The Tetrarchy: Diocletian divided the empire into an Eastern and Western half, each ruled by a senior (Augustus) and junior (Caesar) emperor.",
+        "Emperor Constantine (324 CE): Reunited the empire but moved the capital from Rome to Byzantium, renaming it Constantinople."
+      ],
+      "speakerNotes": "The golden age of the Pax Romana eventually ended, leading to the Crisis of the Third Century. The empire nearly collapsed under the weight of constant civil war, plague, and economic depression. Diocletian's reforms, particularly the division of the empire, were radical but necessary for survival. Constantine's later decision to move the capital to the east was a pivotal moment, shifting the empire's center of gravity.",
+      "slideCode": "<div style='font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;'><h1 style='color: #8b0000;'>Crisis and Division</h1><ul style='text-align: left; font-size: 1.1em;'><li><strong>Crisis of the Third Century (235-284 CE):</strong> Political instability, civil war, and economic collapse.</li><li><strong>Emperor Diocletian (284 CE):</strong> Stabilized the empire with major reforms.</li><li><strong>The Tetrarchy:</strong> Divided the empire into an Eastern and Western half for easier governance.</li><li><strong>Emperor Constantine (324 CE):</strong> Reunited the empire and moved the capital to Constantinople.</li></ul></div>"
+    },
+    {
+      "slideNumber": 6,
+      "title": "The Fall of the Western Roman Empire",
+      "content": [
+        "No single cause, but a combination of factors over centuries.",
+        "External Pressure: Constant invasions and migrations by Germanic tribes (Goths, Vandals).",
+        "Economic Weakness: High inflation, heavy taxation, and disruption of trade.",
+        "Political Instability: A long succession of weak and ineffective emperors.",
+        "Traditional Date of Fall: 476 CE, when the last Western Roman Emperor, Romulus Augustulus, was deposed."
+      ],
+      "speakerNotes": "The fall of Rome is one of history's most debated topics. It wasn't a single event but a 'long fall'. The Western Empire, with its capital in Rome, faced immense pressure. Its economy was crumbling, its political leadership was in chaos, and its borders were collapsing. The sack of Rome in 410 by the Visigoths was a major psychological blow, and by 476, the imperial structure in the West had completely disintegrated. It's crucial to note that the Eastern Roman Empire, or Byzantine Empire, continued to thrive for another thousand years.",
+      "slideCode": "<div style='font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;'><h1 style='color: #8b0000;'>The Fall of the Western Roman Empire</h1><ul style='text-align: left; font-size: 1.1em;'><li>No single cause, but a combination of factors.</li><li><strong>External Pressure:</strong> Invasions by Germanic tribes (Goths, Vandals).</li><li><strong>Economic Weakness:</strong> High inflation, heavy taxation, disruption of trade.</li><li><strong>Political Instability:</strong> A succession of weak emperors.</li><li><strong>Traditional Date of Fall:</strong> 476 CE.</li></ul></div>"
+    },
+    {
+      "slideNumber": 7,
+      "title": "The Enduring Legacy of Rome",
+      "content": [
+        "Language: Latin is the root of the Romance languages (Spanish, French, Italian, etc.) and influences English vocabulary.",
+        "Law and Governance: Concepts like republican government, separation of powers, and legal codes (e.g., Justinian Code) shaped modern legal systems.",
+        "Architecture and Engineering: The arch, the dome, and aqueduct designs are still used today.",
+        "Religion: The Roman Empire's adoption of Christianity was instrumental in its spread to become a major world religion."
+      ],
+      "speakerNotes": "Though the Western Empire fell, Rome's influence never truly disappeared. Its legacy is all around us. We see it in our languages, our legal principles, our government buildings, and the very foundations of Western civilization. The spread of Christianity is perhaps its most profound long-term impact. In conclusion, the Roman Empire's story is a timeless lesson in power, innovation, and the complexities of civilization.",
+      "slideCode": "<div style='font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;'><h1 style='color: #8b0000;'>The Enduring Legacy of Rome</h1><ul style='text-align: left; font-size: 1.1em;'><li><strong>Language:</strong> Latin is the root of the Romance languages.</li><li><strong>Law and Governance:</strong> Shaped modern legal systems and government concepts.</li><li><strong>Architecture and Engineering:</strong> The arch, the dome, and aqueducts.</li><li><strong>Religion:</strong> Instrumental in the spread of Christianity.</li></ul></div>"
+    }
+  ]
 }
